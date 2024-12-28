@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-commerce Product Page</title>
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="script.js"></script>
+    <style>
+        /* CSS for the E-commerce Product Page */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+
+        .product-page {
+            display: flex;
+            flex-wrap: wrap;
+            padding: 20px;
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            background: #fff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        .product-gallery {
+            flex: 1;
+            max-width: 50%;
+        }
+
+        #main-image {
+            width: 100%;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        #main-image:hover {
+            transform: scale(1.05);
+        }
+
+        .thumbnails {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .thumbnails img {
+            width: 60px;
+            height: 60px;
+            border: 2px solid #ddd;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: border-color 0.3s;
+        }
+
+        .thumbnails img:hover {
+            border-color: #007bff;
+        }
+
+        .product-details {
+            flex: 1;
+            max-width: 50%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        h1 {
+            font-size: 28px;
+            margin: 0 0 10px;
+        }
+
+        .price {
+            font-size: 24px;
+            color: #007bff;
+            margin: 10px 0;
+        }
+
+        select {
+            padding: 8px;
+            font-size: 16px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        button {
+            padding: 10px 15px;
+            font-size: 16px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        #cart-notification {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: #fff;
+            border-radius: 4px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="product-page">
+        <!-- Product Gallery -->
+        <div class="product-gallery">
+            <img id="main-image" src="https://www.newgenapps.com/hubfs/Imported_Blog_Media/eCommerce-Website-Components-photo.jpg" alt="Product Image">
+            <div class="thumbnails">
+                <img src="https://cdn.shopify.com/s/files/1/0070/7032/articles/ecommerce_20platforms_3c2ab809-41ff-4185-9fef-52df34de95e4.png" alt="Thumbnail 1" onclick="changeImage('https://cdn.shopify.com/s/files/1/0070/7032/articles/ecommerce_20platforms_3c2ab809-41ff-4185-9fef-52df34de95e4.png')">
+                <img src="https://innowise.com/wp-content/uploads/2024/10/eCommerce-TIZER.jpg" alt="Thumbnail 2" onclick="changeImage('https://innowise.com/wp-content/uploads/2024/10/eCommerce-TIZER.jpg')">
+                <img src="https://polarbackup.com/wp-content/uploads/2024/07/ECommerce.jpg" alt="Thumbnail 3" onclick="changeImage('https://polarbackup.com/wp-content/uploads/2024/07/ECommerce.jpg')">
+            </div>
+            
+        </div>
+
+        <!-- Product Details -->
+        <div class="product-details">
+            <h1>Product Name</h1>
+            <p class="price">Rs.<span id="price">49.99</span></p>
+            <p>Choose your option:</p>
+            <select id="pricing-options" onchange="updatePrice()">
+                <option value="49.99">Basic - Rs.49.99</option>
+                <option value="59.99">Standard - Rs.59.99</option>
+                <option value="69.99">Premium - Rs.69.99</option>
+            </select>
+            <p class="description">This is a great product that you will love!</p>
+
+            <!-- Add to Cart -->
+            <button id="add-to-cart" onclick="addToCart()">Add to Cart</button>
+        </div>
+    </div>
+
+    <!-- Cart Notification -->
+    <div id="cart-notification" class="hidden">
+        Product added to cart! 🛒
+    </div>
+
+    <script>
+        // JavaScript Functionality
+
+        // Change main image on thumbnail click
+        function changeImage(imageSrc) {
+            const mainImage = document.getElementById('main-image');
+            mainImage.src = imageSrc;
+        }
+
+        // Update price based on selected option
+        function updatePrice() {
+            const pricingOptions = document.getElementById('pricing-options');
+            const priceElement = document.getElementById('price');
+            priceElement.textContent = pricingOptions.value;
+        }
+
+        // Add to cart functionality
+        function addToCart() {
+            const cartNotification = document.getElementById('cart-notification');
+            cartNotification.style.display = 'block';
+            setTimeout(() => {
+                cartNotification.style.display = 'none';
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
